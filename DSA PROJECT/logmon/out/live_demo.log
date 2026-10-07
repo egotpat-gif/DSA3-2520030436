@@ -1,0 +1,36 @@
+2026-09-20 09:01:03 INFO Server started on port 8080
+2026-09-20 09:02:11 INFO Health check OK
+2026-09-20 09:05:45 ERROR NullPointerException at com.app.OrderService.process(OrderService.java:112)
+2026-09-20 09:06:02 ERROR Connection refused: host db-3 port 5432
+2026-09-20 09:07:15 WARN Deprecated API used: /api/v1/legacy-checkout
+2026-09-20 09:08:40 ERROR NullPointerException at com.app.OrderService.process(OrderService.java:118)
+2026-09-20 09:09:12 ERROR Timeout waiting for response from payment-gateway after 30000ms
+2026-09-20 09:11:20 ERROR Authentication failed for user admin from 192.168.1.44
+2026-09-20 09:12:03 ERROR Connection refused: host db-7 port 5432
+2026-09-20 09:14:55 ERROR OutOfMemoryError: Java heap space in worker-thread-2
+2026-09-20 09:15:02 WARN Cache eviction storm detected on node-7, evicted 5200 keys
+2026-09-20 09:16:44 ERROR Disk full on /var/log partition, 0 bytes free
+2026-09-20 09:18:09 ERROR NullPointerException at com.app.OrderService.process(OrderService.java:121)
+2026-09-20 09:19:30 ERROR 404 Not Found: /api/v2/promotions
+2026-09-20 09:20:12 WARN Cache eviction storm detected on node-9, evicted 4890 keys
+2026-09-20 09:22:05 ERROR Timeout waiting for response from payment-gateway after 30500ms
+2026-09-20 09:23:47 ERROR Authentication failed for user root from 192.168.1.51
+2026-09-20 09:25:19 ERROR Connection refused: host db-3 port 5432
+2026-09-20 09:27:33 ERROR OutOfMemoryError: Java heap space in worker-thread-5
+2026-09-20 09:29:01 WARN Deprecated API used: /api/v1/legacy-checkout
+2026-09-20 09:30:44 ERROR Disk full on /var/log partition, 0 bytes free
+2026-09-20 09:32:18 WARN Cache eviction storm detected on node-3, evicted 5100 keys
+2026-09-20 09:33:52 ERROR 404 Not Found: /api/v2/promotions
+2026-09-20 09:35:10 ERROR NullPointerException at com.app.OrderService.process(OrderService.java:130)
+2026-09-20 09:36:41 ERROR Timeout waiting for response from payment-gateway after 29800ms
+2026-09-20 09:38:22 ERROR Authentication failed for user admin from 192.168.1.44
+2026-09-20 09:40:05 ERROR Connection refused: host db-9 port 5432
+2026-09-20 09:41:37 ERROR OutOfMemoryError: Java heap space in worker-thread-1
+2026-09-20 09:43:14 WARN Cache eviction storm detected on node-7, evicted 5300 keys
+2026-09-20 09:44:59 ERROR Disk full on /var/log partition, 0 bytes free
+2026-09-20 09:46:20 INFO Health check OK
+2026-09-20 09:47:48 ERROR 404 Not Found: /api/v2/promotions
+2026-09-28 10:00:00 INFO Server started successfully
+2026-09-28 10:00:00 ERROR NullPointerException at UserService.java:25
+2026-10-06 09:05:15 ERROR NullPointerException at com.app.LiveDemo.run(LiveDemo.java:9)
+2026-10-06 09:05:16 ERROR OutOfMemoryError: Java heap space in worker-thread-9

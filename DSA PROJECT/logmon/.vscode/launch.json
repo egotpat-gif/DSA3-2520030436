@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "1) Run unit tests",
+      "request": "launch",
+      "mainClass": "logmon.TestRunner",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "java",
+      "name": "2) Demo: sample_server.log (mixed errors)",
+      "request": "launch",
+      "mainClass": "logmon.Main",
+      "args": "data/sample_server.log",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "java",
+      "name": "3) Demo: test2_critical_burst.log",
+      "request": "launch",
+      "mainClass": "logmon.Main",
+      "args": "data/test2_critical_burst.log",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "java",
+      "name": "4) Demo: test3_clean_server.log (no errors)",
+      "request": "launch",
+      "mainClass": "logmon.Main",
+      "args": "data/test3_clean_server.log",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "java",
+      "name": "5) Demo: test4_unknown_errors.log (fuzzy + discovery)",
+      "request": "launch",
+      "mainClass": "logmon.Main",
+      "args": "data/test4_unknown_errors.log",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

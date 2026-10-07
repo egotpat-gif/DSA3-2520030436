@@ -1,0 +1,49 @@
+Automated Log Error Monitoring System - unit tests
+
+== CO1 / CO2: string matching ==
+  [PASS] KMP finds overlapping matches: 'aba' in 'abababa' -> [0, 2, 4]
+  [PASS] KMP returns nothing when the pattern is absent
+  [PASS] KMP finds a signature inside a real log line
+  [PASS] Rabin-Karp finds several different patterns in ONE pass
+  [PASS] Edit distance: kitten -> sitting = 3 (classic textbook example)
+  [PASS] Edit distance: empty string vs 'abc' = 3 (three insertions)
+  [PASS] Similarity of identical strings = 1.0
+  [PASS] Near-duplicate error lines (node-7 vs node-9) are >= 0.82 similar
+  [PASS] Unrelated lines are NOT near-duplicates
+  [PASS] Suffix array of 'banana' = [5, 3, 1, 0, 4, 2] and LCP = [0, 1, 3, 0, 0, 2]
+  [PASS] Suffix array discovery: longest repeat in 'banana' (len>=3) is 'ana'
+
+== CO1 / CO3: scheduling and dynamic programming ==
+  [PASS] Job sequencing (classic textbook case) -> order c, a, e with profit 142
+  [PASS] Bitmask DP picks the best subset under budget 4 -> {A, C}, cost 3, value 5
+  [PASS] Bitmask DP: nothing fits in a budget of 0 -> empty selection
+  [PASS] Interval DP: three quiet buckets [0,0,0] merge into ONE window (cost 10)
+  [PASS] Interval DP: two heavy buckets [9,9] stay as TWO windows (cost 38)
+  [PASS] Interval DP: [1,1,1,20,20,1,1,1] -> quiet edges merge, the two bursts stand alone
+
+== CO4: network flow ==
+  [PASS] Edmonds-Karp max flow on a 4-node network = 5, and min-cut capacity = 5 (duality)
+  [PASS] Ticket assignment: capacity is enough -> everything assigned, no bottleneck
+  [PASS] Ticket assignment: 6 tickets but the only skilled engineer has capacity 2 -> 2 assigned, E1 is the bottleneck
+  [PASS] Ticket assignment: nobody has the required skill -> 0 assigned
+
+== CO5: NP-hard Vertex Cover, 2-approximation ==
+  [PASS] Path graph a-b-c-d: cover is valid and <= 2 x optimal (optimal = 2)
+  [PASS] Star graph (centre + 4 leaves): cover is valid and <= 2 x optimal (optimal = 1)
+  [PASS] Graph with no edges -> empty cover
+
+== CO6: randomised + parallel algorithms ==
+  [PASS] Las Vegas randomised-select: 3rd smallest of [7,1,5,3,9] is 5 (checked 50 times)
+  [PASS] Median of [4,1,3,2] = 2.5 and median of [9,1,5] = 5.0
+  [PASS] Monte Carlo: all-error log estimates 1.0, all-clean log estimates 0.0
+  [PASS] Monte Carlo: a 50/50 log is estimated within +/-0.06 of 0.5 (random, but overwhelmingly likely)
+  [PASS] Parallel reduce: sum of 1..100 = 5050
+  [PASS] Parallel prefix sum of [1..10] = [1,3,6,10,15,21,28,36,45,55]
+  [PASS] Parallel prefix sum matches a plain sequential loop on 1000 random numbers
+
+== Integration: real log file (skipped if not run from project root) ==
+  [PASS] sample_server.log: Rabin-Karp counts match the hand-counted totals
+
+------------------------------------------
+Result: 32 passed, 0 failed
+ALL TESTS PASSED

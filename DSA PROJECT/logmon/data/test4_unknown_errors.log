@@ -1,0 +1,10 @@
+2026-09-21 11:00:02 INFO Server started on port 8080
+2026-09-21 11:01:10 ERROR Kafka consumer lag exceeded threshold on partition 3, lag=9120
+2026-09-21 11:02:20 WARN SSL certificate expires in 12 days for host api-1
+2026-09-21 11:03:31 ERROR Kafka consumer lag exceeded threshold on partition 5, lag=10450
+2026-09-21 11:04:44 ERROR NullPointerException at com.app.Cart.total(Cart.java:77)
+2026-09-21 11:06:02 WARN SSL certificate expires in 12 days for host api-2
+2026-09-21 11:07:15 ERROR Kafka consumer lag exceeded threshold on partition 1, lag=8890
+2026-09-21 11:08:29 ERROR Gremlin appeared in module zeta
+2026-09-21 11:09:40 WARN SSL certificate expires in 11 days for host api-3
+2026-09-21 11:10:55 INFO Health check OK

@@ -1,0 +1,81 @@
+Loaded 12 log lines from data/test2_critical_burst.log
+
+[CO2 | KMP] Full-corpus lookup for "OutOfMemoryError": 4 occurrence(s) at character offsets [39, 98, 209, 423]
+
+[CO1 | Edit-Distance] Formed 0 fuzzy cluster(s) from 2 unmatched line(s) (similarity threshold 0.82):
+
+[CO2 | Suffix Array + LCP] Candidate NEW error signatures discovered from previously unmatched lines:
+   (no substring repeated often enough to suggest a new signature)
+
+[CO3 | Bitmask DP] Resource-constrained monitoring mode (budget=11 of max 23):
+   Selected signatures (total cost=11, total value=48):
+     NULL_POINTER[NullPointerException] severity=HIGH freq=0 cost=3
+     CONN_REFUSED[Connection refused] severity=HIGH freq=2 cost=4
+     OOM[OutOfMemoryError] severity=CRITICAL freq=4 cost=2
+     DISK_FULL[Disk full] severity=CRITICAL freq=3 cost=2
+
+[CO3 | Interval DP] 2 time-buckets (each 5 min) merged into 1 report window(s), min total cost=30
+
+[CO1 | Job-Sequencing / NP-hard-scheduling class] 3 of 4 candidate remediation tasks fit into the available slots (total profit=24)
+
+[CO4 | Network Flow / Edmonds-Karp] Ticket assignment: 7 of 10 error tickets assignable within today's engineer capacities.
+     Asha (backend) -> 1 ticket(s) assigned
+     Ravi (infra) -> 2 ticket(s) assigned
+     Kiran (security) -> 0 ticket(s) assigned
+     Priya (on-call/misc) -> 4 ticket(s) assigned
+   Min-cut bottleneck(s) (max-flow/min-cut duality - capacity fully used): [Ravi (infra) (capacity 2), Priya (on-call/misc) (capacity 4)]
+
+[CO5 | NP-hard recognition + 2-approx Vertex Cover] Correlation graph has 4 error-type node(s) and 6 correlation edge(s).
+   Minimal-effort monitoring core set (guaranteed <= 2x optimal size): [OOM, DISK_FULL, CONN_REFUSED, TIMEOUT]
+
+[CO6 | Randomised Algorithms]
+   Las Vegas (randomised-select): median error-type frequency = 2.5 (always exact, expected O(n) time)
+   Monte Carlo (40% random sample): estimated error-line rate = <VARIES: about 0.833> (actual = 0.833, sampling error = <VARIES>)
+
+[CO6 | Parallel Primitives] parallel-reduce total severity-weighted score = 36 (work O(n), span O(log n))
+   parallel-prefix-sum of bucketed error counts (cumulative, work O(n log n), span O(log^2 n)): [7, 10]
+
+=========================================================
+ AUTOMATED LOG ERROR MONITORING SYSTEM - SUMMARY REPORT
+=========================================================
+
+Total log lines processed : 12
+Total error events detected: 10
+
+--- Error Type Summary (Type | Frequency | Severity) ---
+ERROR TYPE                        COUNT     SEVERITY
+OOM                                   4     CRITICAL
+DISK_FULL                             3     CRITICAL
+CONN_REFUSED                          2         HIGH
+TIMEOUT                               1       MEDIUM
+
+--- Optimally Merged Report Windows (Interval DP) ---
+FROM     TO        ERR-COUNT
+bucket-0   bucket-1           10
+
+--- Prioritised Remediation Schedule (Job-Sequencing) ---
+Total scheduled severity-weighted profit: 24
+  Slot 1   -> OOM                       (profit=16, deadline<=slot 1)
+  Slot 2   -> CONN_REFUSED              (profit=6, deadline<=slot 2)
+  Slot 3   -> TIMEOUT                   (profit=2, deadline<=slot 3)
+
+--- CO4: Network-Flow Ticket Assignment (Edmonds-Karp) ---
+Total tickets assignable: 7 / 10
+  Asha (backend)         1 ticket(s)
+  Ravi (infra)           2 ticket(s)
+  Kiran (security)       0 ticket(s)
+  Priya (on-call/misc)   4 ticket(s)
+Bottleneck engineer(s) (min cut): [Ravi (infra) (capacity 2), Priya (on-call/misc) (capacity 4)]
+
+--- CO5: NP-Hard Vertex Cover (2-approximation) ---
+Minimal-effort monitoring core set: [OOM, DISK_FULL, CONN_REFUSED, TIMEOUT]
+
+--- CO6: Randomised Algorithms ---
+Median error-type frequency (Las Vegas randomised-select): 2.50
+Monte Carlo estimated error-line rate: <VARIES: about 0.833> (actual: 0.833)
+
+--- CO6: Parallel Primitives (Fork/Join) ---
+Total severity-weighted score (parallel reduce): 36
+Cumulative bucket counts (parallel prefix sum): [7, 10]
+
+=========================================================

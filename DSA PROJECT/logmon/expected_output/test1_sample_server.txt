@@ -1,0 +1,93 @@
+Loaded 32 log lines from data/sample_server.log
+
+[CO2 | KMP] Full-corpus lookup for "OutOfMemoryError": 3 occurrence(s) at character offsets [497, 1034, 1558]
+
+[CO1 | Edit-Distance] Formed 1 fuzzy cluster(s) from 7 unmatched line(s) (similarity threshold 0.82):
+   FUZZY-CLUSTER-0 x4  e.g. "WARN Cache eviction storm detected on node-7, evicted 5200 keys"
+
+[CO2 | Suffix Array + LCP] Candidate NEW error signatures discovered from previously unmatched lines:
+   "WARN Cache eviction storm detected on node-7, evicted 5" (len=55)
+   "INFO Health check OK" (len=20)
+
+[CO3 | Bitmask DP] Resource-constrained monitoring mode (budget=11 of max 23):
+   Selected signatures (total cost=11, total value=62):
+     NULL_POINTER[NullPointerException] severity=HIGH freq=4 cost=3
+     CONN_REFUSED[Connection refused] severity=HIGH freq=4 cost=4
+     OOM[OutOfMemoryError] severity=CRITICAL freq=3 cost=2
+     DISK_FULL[Disk full] severity=CRITICAL freq=3 cost=2
+
+[CO3 | Interval DP] 10 time-buckets (each 5 min) merged into 5 report window(s), min total cost=108
+
+[CO1 | Job-Sequencing / NP-hard-scheduling class] 4 of 9 candidate remediation tasks fit into the available slots (total profit=35)
+
+[CO4 | Network Flow / Edmonds-Karp] Ticket assignment: 11 of 29 error tickets assignable within today's engineer capacities.
+     Asha (backend) -> 3 ticket(s) assigned
+     Ravi (infra) -> 2 ticket(s) assigned
+     Kiran (security) -> 2 ticket(s) assigned
+     Priya (on-call/misc) -> 4 ticket(s) assigned
+   Min-cut bottleneck(s) (max-flow/min-cut duality - capacity fully used): [Asha (backend) (capacity 3), Ravi (infra) (capacity 2), Kiran (security) (capacity 2), Priya (on-call/misc) (capacity 4)]
+
+[CO5 | NP-hard recognition + 2-approx Vertex Cover] Correlation graph has 9 error-type node(s) and 21 correlation edge(s).
+   Minimal-effort monitoring core set (guaranteed <= 2x optimal size): [NULL_POINTER, CONN_REFUSED, DEPRECATED_API, TIMEOUT, AUTH_FAILED, OOM, FUZZY-CLUSTER-0, DISK_FULL]
+
+[CO6 | Randomised Algorithms]
+   Las Vegas (randomised-select): median error-type frequency = 3.0 (always exact, expected O(n) time)
+   Monte Carlo (40% random sample): estimated error-line rate = <VARIES: about 0.719> (actual = 0.719, sampling error = <VARIES>)
+
+[CO6 | Parallel Primitives] parallel-reduce total severity-weighted score = 76 (work O(n), span O(log n))
+   parallel-prefix-sum of bucketed error counts (cumulative, work O(n log n), span O(log^2 n)): [2, 5, 9, 13, 16, 19, 22, 25, 28, 29]
+
+=========================================================
+ AUTOMATED LOG ERROR MONITORING SYSTEM - SUMMARY REPORT
+=========================================================
+
+Total log lines processed : 32
+Total error events detected: 29
+
+--- Error Type Summary (Type | Frequency | Severity) ---
+ERROR TYPE                        COUNT     SEVERITY
+OOM                                   3     CRITICAL
+DISK_FULL                             3     CRITICAL
+NULL_POINTER                          4         HIGH
+CONN_REFUSED                          4         HIGH
+AUTH_FAILED                           3         HIGH
+FUZZY-CLUSTER-0                       4       MEDIUM
+TIMEOUT                               3       MEDIUM
+NOT_FOUND_404                         3          LOW
+DEPRECATED_API                        2          LOW
+
+--- Optimally Merged Report Windows (Interval DP) ---
+FROM     TO        ERR-COUNT
+bucket-0   bucket-1            5
+bucket-2   bucket-3            8
+bucket-4   bucket-5            6
+bucket-6   bucket-7            6
+bucket-8   bucket-9            4
+
+--- Prioritised Remediation Schedule (Job-Sequencing) ---
+Total scheduled severity-weighted profit: 35
+  Slot 1   -> OOM                       (profit=12, deadline<=slot 1)
+  Slot 2   -> NULL_POINTER              (profit=12, deadline<=slot 2)
+  Slot 3   -> FUZZY-CLUSTER-0           (profit=8, deadline<=slot 3)
+  Slot 4   -> NOT_FOUND_404             (profit=3, deadline<=slot 4)
+
+--- CO4: Network-Flow Ticket Assignment (Edmonds-Karp) ---
+Total tickets assignable: 11 / 29
+  Asha (backend)         3 ticket(s)
+  Ravi (infra)           2 ticket(s)
+  Kiran (security)       2 ticket(s)
+  Priya (on-call/misc)   4 ticket(s)
+Bottleneck engineer(s) (min cut): [Asha (backend) (capacity 3), Ravi (infra) (capacity 2), Kiran (security) (capacity 2), Priya (on-call/misc) (capacity 4)]
+
+--- CO5: NP-Hard Vertex Cover (2-approximation) ---
+Minimal-effort monitoring core set: [NULL_POINTER, CONN_REFUSED, DEPRECATED_API, TIMEOUT, AUTH_FAILED, OOM, FUZZY-CLUSTER-0, DISK_FULL]
+
+--- CO6: Randomised Algorithms ---
+Median error-type frequency (Las Vegas randomised-select): 3.00
+Monte Carlo estimated error-line rate: <VARIES: about 0.719> (actual: 0.719)
+
+--- CO6: Parallel Primitives (Fork/Join) ---
+Total severity-weighted score (parallel reduce): 76
+Cumulative bucket counts (parallel prefix sum): [2, 5, 9, 13, 16, 19, 22, 25, 28, 29]
+
+=========================================================

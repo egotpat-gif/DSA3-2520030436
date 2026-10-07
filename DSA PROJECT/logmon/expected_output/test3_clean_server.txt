@@ -1,0 +1,74 @@
+Loaded 5 log lines from data/test3_clean_server.log
+
+[CO2 | KMP] Full-corpus lookup for "OutOfMemoryError": 0 occurrence(s) at character offsets []
+
+[CO1 | Edit-Distance] Formed 0 fuzzy cluster(s) from 5 unmatched line(s) (similarity threshold 0.82):
+
+[CO2 | Suffix Array + LCP] Candidate NEW error signatures discovered from previously unmatched lines:
+   "INFO Health check OK" (len=20)
+
+[CO3 | Bitmask DP] Resource-constrained monitoring mode (budget=11 of max 23):
+   Selected signatures (total cost=11, total value=14):
+     NULL_POINTER[NullPointerException] severity=HIGH freq=0 cost=3
+     CONN_REFUSED[Connection refused] severity=HIGH freq=0 cost=4
+     OOM[OutOfMemoryError] severity=CRITICAL freq=0 cost=2
+     DISK_FULL[Disk full] severity=CRITICAL freq=0 cost=2
+
+[CO3 | Interval DP] 1 time-buckets (each 5 min) merged into 1 report window(s), min total cost=10
+
+[CO1 | Job-Sequencing / NP-hard-scheduling class] 0 of 0 candidate remediation tasks fit into the available slots (total profit=0)
+
+[CO4 | Network Flow / Edmonds-Karp] Ticket assignment: 0 of 0 error tickets assignable within today's engineer capacities.
+     Asha (backend) -> 0 ticket(s) assigned
+     Ravi (infra) -> 0 ticket(s) assigned
+     Kiran (security) -> 0 ticket(s) assigned
+     Priya (on-call/misc) -> 0 ticket(s) assigned
+   No engineer capacity is fully saturated (no bottleneck in the min cut).
+
+[CO5 | NP-hard recognition + 2-approx Vertex Cover] Correlation graph has 0 error-type node(s) and 0 correlation edge(s).
+   Minimal-effort monitoring core set (guaranteed <= 2x optimal size): []
+
+[CO6 | Randomised Algorithms]
+   Las Vegas (randomised-select): median error-type frequency = 0.0 (always exact, expected O(n) time)
+   Monte Carlo (40% random sample): estimated error-line rate = <VARIES: about 0.000> (actual = 0.000, sampling error = <VARIES>)
+
+[CO6 | Parallel Primitives] parallel-reduce total severity-weighted score = 0 (work O(n), span O(log n))
+   parallel-prefix-sum of bucketed error counts (cumulative, work O(n log n), span O(log^2 n)): [0]
+
+=========================================================
+ AUTOMATED LOG ERROR MONITORING SYSTEM - SUMMARY REPORT
+=========================================================
+
+Total log lines processed : 5
+Total error events detected: 0
+
+--- Error Type Summary (Type | Frequency | Severity) ---
+ERROR TYPE                        COUNT     SEVERITY
+
+--- Optimally Merged Report Windows (Interval DP) ---
+FROM     TO        ERR-COUNT
+bucket-0   bucket-0            0
+
+--- Prioritised Remediation Schedule (Job-Sequencing) ---
+Total scheduled severity-weighted profit: 0
+
+--- CO4: Network-Flow Ticket Assignment (Edmonds-Karp) ---
+Total tickets assignable: 0 / 0
+  Asha (backend)         0 ticket(s)
+  Ravi (infra)           0 ticket(s)
+  Kiran (security)       0 ticket(s)
+  Priya (on-call/misc)   0 ticket(s)
+Bottleneck engineer(s) (min cut): none
+
+--- CO5: NP-Hard Vertex Cover (2-approximation) ---
+Minimal-effort monitoring core set: []
+
+--- CO6: Randomised Algorithms ---
+Median error-type frequency (Las Vegas randomised-select): 0.00
+Monte Carlo estimated error-line rate: <VARIES: about 0.000> (actual: 0.000)
+
+--- CO6: Parallel Primitives (Fork/Join) ---
+Total severity-weighted score (parallel reduce): 0
+Cumulative bucket counts (parallel prefix sum): [0]
+
+=========================================================

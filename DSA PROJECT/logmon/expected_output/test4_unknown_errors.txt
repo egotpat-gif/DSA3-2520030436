@@ -1,0 +1,85 @@
+Loaded 10 log lines from data/test4_unknown_errors.log
+
+[CO2 | KMP] Full-corpus lookup for "OutOfMemoryError": 0 occurrence(s) at character offsets []
+
+[CO1 | Edit-Distance] Formed 3 fuzzy cluster(s) from 9 unmatched line(s) (similarity threshold 0.82):
+   FUZZY-CLUSTER-0 x3  e.g. "ERROR Kafka consumer lag exceeded threshold on partition 3, lag=9120"
+   FUZZY-CLUSTER-1 x3  e.g. "WARN SSL certificate expires in 12 days for host api-1"
+   FUZZY-CLUSTER-2 x1  e.g. "ERROR Gremlin appeared in module zeta"
+
+[CO2 | Suffix Array + LCP] Candidate NEW error signatures discovered from previously unmatched lines:
+   "ERROR Kafka consumer lag exceeded threshold on partition " (len=57)
+   "WARN SSL certificate expires in 12 days for host api-" (len=53)
+
+[CO3 | Bitmask DP] Resource-constrained monitoring mode (budget=11 of max 23):
+   Selected signatures (total cost=11, total value=17):
+     NULL_POINTER[NullPointerException] severity=HIGH freq=1 cost=3
+     CONN_REFUSED[Connection refused] severity=HIGH freq=0 cost=4
+     OOM[OutOfMemoryError] severity=CRITICAL freq=0 cost=2
+     DISK_FULL[Disk full] severity=CRITICAL freq=0 cost=2
+
+[CO3 | Interval DP] 2 time-buckets (each 5 min) merged into 1 report window(s), min total cost=26
+
+[CO1 | Job-Sequencing / NP-hard-scheduling class] 3 of 4 candidate remediation tasks fit into the available slots (total profit=15)
+
+[CO4 | Network Flow / Edmonds-Karp] Ticket assignment: 5 of 8 error tickets assignable within today's engineer capacities.
+     Asha (backend) -> 1 ticket(s) assigned
+     Ravi (infra) -> 0 ticket(s) assigned
+     Kiran (security) -> 0 ticket(s) assigned
+     Priya (on-call/misc) -> 4 ticket(s) assigned
+   Min-cut bottleneck(s) (max-flow/min-cut duality - capacity fully used): [Priya (on-call/misc) (capacity 4)]
+
+[CO5 | NP-hard recognition + 2-approx Vertex Cover] Correlation graph has 4 error-type node(s) and 5 correlation edge(s).
+   Minimal-effort monitoring core set (guaranteed <= 2x optimal size): [NULL_POINTER, FUZZY-CLUSTER-0, FUZZY-CLUSTER-1, FUZZY-CLUSTER-2]
+
+[CO6 | Randomised Algorithms]
+   Las Vegas (randomised-select): median error-type frequency = 2.0 (always exact, expected O(n) time)
+   Monte Carlo (40% random sample): estimated error-line rate = <VARIES: about 0.500> (actual = 0.500, sampling error = <VARIES>)
+
+[CO6 | Parallel Primitives] parallel-reduce total severity-weighted score = 17 (work O(n), span O(log n))
+   parallel-prefix-sum of bucketed error counts (cumulative, work O(n log n), span O(log^2 n)): [4, 8]
+
+=========================================================
+ AUTOMATED LOG ERROR MONITORING SYSTEM - SUMMARY REPORT
+=========================================================
+
+Total log lines processed : 10
+Total error events detected: 8
+
+--- Error Type Summary (Type | Frequency | Severity) ---
+ERROR TYPE                        COUNT     SEVERITY
+NULL_POINTER                          1         HIGH
+FUZZY-CLUSTER-0                       3       MEDIUM
+FUZZY-CLUSTER-1                       3       MEDIUM
+FUZZY-CLUSTER-2                       1       MEDIUM
+
+--- Optimally Merged Report Windows (Interval DP) ---
+FROM     TO        ERR-COUNT
+bucket-0   bucket-1            8
+
+--- Prioritised Remediation Schedule (Job-Sequencing) ---
+Total scheduled severity-weighted profit: 15
+  Slot 1   -> NULL_POINTER              (profit=3, deadline<=slot 2)
+  Slot 2   -> FUZZY-CLUSTER-1           (profit=6, deadline<=slot 3)
+  Slot 3   -> FUZZY-CLUSTER-0           (profit=6, deadline<=slot 3)
+
+--- CO4: Network-Flow Ticket Assignment (Edmonds-Karp) ---
+Total tickets assignable: 5 / 8
+  Asha (backend)         1 ticket(s)
+  Ravi (infra)           0 ticket(s)
+  Kiran (security)       0 ticket(s)
+  Priya (on-call/misc)   4 ticket(s)
+Bottleneck engineer(s) (min cut): [Priya (on-call/misc) (capacity 4)]
+
+--- CO5: NP-Hard Vertex Cover (2-approximation) ---
+Minimal-effort monitoring core set: [NULL_POINTER, FUZZY-CLUSTER-0, FUZZY-CLUSTER-1, FUZZY-CLUSTER-2]
+
+--- CO6: Randomised Algorithms ---
+Median error-type frequency (Las Vegas randomised-select): 2.00
+Monte Carlo estimated error-line rate: <VARIES: about 0.500> (actual: 0.500)
+
+--- CO6: Parallel Primitives (Fork/Join) ---
+Total severity-weighted score (parallel reduce): 17
+Cumulative bucket counts (parallel prefix sum): [4, 8]
+
+=========================================================
